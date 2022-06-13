@@ -56,11 +56,11 @@ extension RootState {
             
         case .binding(\.$stepperValue):
             state.sliderValue = Double(state.stepperValue)
-            return .none
+            return Effect(value: .getAnimals)
         
         case .binding(\.$sliderValue):
             state.stepperValue = Int(state.sliderValue)
-            return .none
+            return Effect(value: .getAnimals)
         
         case .binding(\.$text):
             guard let value = Int(state.text),
@@ -68,16 +68,15 @@ extension RootState {
             else { return .none }
             state.sliderValue = Double(value)
             state.stepperValue = value
-            return .none
+            return Effect(value: .getAnimals)
 
         case .binding:
             return .none
             
         case .resetButtonTapped:
             state = .init()
-            return .none
+            return Effect(value: .getAnimals)
             
-            // this is new
         case .getAnimals:
             return environment.animalService
                 .getAnimals(count: state.stepperValue)
@@ -94,9 +93,8 @@ extension RootState {
                 state.animals = animals
             }
             return .none
-            // new ends here
+
         }
-        
     }
     .binding()
     .debug()

@@ -32,16 +32,19 @@ struct RootView: View {
                         viewStore.send(.resetButtonTapped)
                     }
                     .foregroundColor(.red)
-                    // this is new
                     Button("GetAnimals") {
                         viewStore.send(.getAnimals)
                     }
                     ForEach(viewStore.animals) { animal in
                         Text(animal.name)
                     }
-                    // new ends here
                 }
             }
+            // this is new
+            .onAppear {
+                viewStore.send(.getAnimals)
+            }
+            // new ends here
         }
     }
 }
