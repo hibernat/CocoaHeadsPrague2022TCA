@@ -8,18 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		A030EC9928567F60002F3B78 /* TCADemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A030EC9828567F60002F3B78 /* TCADemoApp.swift */; };
-		A030EC9B28567F60002F3B78 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A030EC9A28567F60002F3B78 /* ContentView.swift */; };
+		A030EC9B28567F60002F3B78 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A030EC9A28567F60002F3B78 /* RootView.swift */; };
 		A030EC9D28567F62002F3B78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A030EC9C28567F62002F3B78 /* Assets.xcassets */; };
 		A030ECA028567F62002F3B78 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A030EC9F28567F62002F3B78 /* Preview Assets.xcassets */; };
 		A030ECA828567FAC002F3B78 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A030ECA728567FAC002F3B78 /* ComposableArchitecture */; };
+		A030ECAB28568085002F3B78 /* RootStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A030ECAA28568085002F3B78 /* RootStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A030EC9528567F60002F3B78 /* TCADemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TCADemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A030EC9828567F60002F3B78 /* TCADemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCADemoApp.swift; sourceTree = "<group>"; };
-		A030EC9A28567F60002F3B78 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A030EC9A28567F60002F3B78 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		A030EC9C28567F62002F3B78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A030EC9F28567F62002F3B78 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A030ECAA28568085002F3B78 /* RootStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,8 +55,9 @@
 		A030EC9728567F60002F3B78 /* TCADemo */ = {
 			isa = PBXGroup;
 			children = (
+				A030ECA928567FF5002F3B78 /* Stores */,
 				A030EC9828567F60002F3B78 /* TCADemoApp.swift */,
-				A030EC9A28567F60002F3B78 /* ContentView.swift */,
+				A030EC9A28567F60002F3B78 /* RootView.swift */,
 				A030EC9C28567F62002F3B78 /* Assets.xcassets */,
 				A030EC9E28567F62002F3B78 /* Preview Content */,
 			);
@@ -67,6 +70,14 @@
 				A030EC9F28567F62002F3B78 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A030ECA928567FF5002F3B78 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				A030ECAA28568085002F3B78 /* RootStore.swift */,
+			);
+			path = Stores;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,7 +156,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A030EC9B28567F60002F3B78 /* ContentView.swift in Sources */,
+				A030EC9B28567F60002F3B78 /* RootView.swift in Sources */,
+				A030ECAB28568085002F3B78 /* RootStore.swift in Sources */,
 				A030EC9928567F60002F3B78 /* TCADemoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

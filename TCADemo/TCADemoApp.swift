@@ -11,7 +11,13 @@ import SwiftUI
 struct TCADemoApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView(
+                store: .init(
+                    initialState: .init(),
+                    reducer: RootState.reducer,
+                    environment: .live
+                )
+            )
         }
     }
 }
