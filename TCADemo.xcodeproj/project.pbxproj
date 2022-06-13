@@ -13,6 +13,7 @@
 		A030ECA028567F62002F3B78 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A030EC9F28567F62002F3B78 /* Preview Assets.xcassets */; };
 		A030ECA828567FAC002F3B78 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A030ECA728567FAC002F3B78 /* ComposableArchitecture */; };
 		A030ECAB28568085002F3B78 /* RootStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A030ECAA28568085002F3B78 /* RootStore.swift */; };
+		A030ECAF28573EAE002F3B78 /* AnimalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A030ECAE28573EAE002F3B78 /* AnimalService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		A030EC9C28567F62002F3B78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A030EC9F28567F62002F3B78 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A030ECAA28568085002F3B78 /* RootStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootStore.swift; sourceTree = "<group>"; };
+		A030ECAE28573EAE002F3B78 /* AnimalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,9 +57,10 @@
 		A030EC9728567F60002F3B78 /* TCADemo */ = {
 			isa = PBXGroup;
 			children = (
+				A030ECB028574570002F3B78 /* Services */,
 				A030ECA928567FF5002F3B78 /* Stores */,
+				A030ECB128574588002F3B78 /* Views */,
 				A030EC9828567F60002F3B78 /* TCADemoApp.swift */,
-				A030EC9A28567F60002F3B78 /* RootView.swift */,
 				A030EC9C28567F62002F3B78 /* Assets.xcassets */,
 				A030EC9E28567F62002F3B78 /* Preview Content */,
 			);
@@ -78,6 +81,22 @@
 				A030ECAA28568085002F3B78 /* RootStore.swift */,
 			);
 			path = Stores;
+			sourceTree = "<group>";
+		};
+		A030ECB028574570002F3B78 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A030ECAE28573EAE002F3B78 /* AnimalService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A030ECB128574588002F3B78 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A030EC9A28567F60002F3B78 /* RootView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,6 +177,7 @@
 			files = (
 				A030EC9B28567F60002F3B78 /* RootView.swift in Sources */,
 				A030ECAB28568085002F3B78 /* RootStore.swift in Sources */,
+				A030ECAF28573EAE002F3B78 /* AnimalService.swift in Sources */,
 				A030EC9928567F60002F3B78 /* TCADemoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

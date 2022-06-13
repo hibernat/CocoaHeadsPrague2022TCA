@@ -16,25 +16,32 @@ struct RootState: Equatable {
     @BindableState var sliderValue: Double = Double(Self.defaultValue)
     @BindableState var stepperValue: Int = Self.defaultValue
     @BindableState var text = ""
+    
+    var animals: [Animal] = []
 }
 
 //MARK: - RootAction
 enum RootAction: BindableAction {
     case binding(BindingAction<RootState>)
     case resetButtonTapped
+    case getAnimals
+    case getAnimalsResponse(Result<[Animal], AnimalServiceError>)
 }
 
 //MARK: - RootEnvironment
 struct RootEnvironment {
+    var animalService: AnimalServiceProtocol
     var mainQueue: AnySchedulerOf<DispatchQueue>
     var notificationCenter: NotificationCenter
     
     static let live = Self(
+        animalService: AnimalService(),
         mainQueue: .main,
         notificationCenter: .default
     )
     
     static let preview = Self(
+        animalService: AnimalServicePreview(),
         mainQueue: .main,
         notificationCenter: .default
     )
@@ -69,6 +76,25 @@ extension RootState {
         case .resetButtonTapped:
             state = .init()
             return .none
+            
+            // this is new
+        case .getAnimals:
+            return environment.animalService
+                .getAnimals(count: state.stepperValue)
+                .catchToEffect()
+                .map { RootAction.getAnimalsResponse($0) }
+                .receive(on: environment.mainQueue)
+                .eraseToEffect()
+            
+        case .getAnimalsResponse(let result):
+            switch result {
+            case .failure(let animalServiceError):
+                break
+            case .success(let animals):
+                state.animals = animals
+            }
+            return .none
+            // new ends here
         }
         
     }
