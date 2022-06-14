@@ -12,14 +12,15 @@ import ComposableArchitecture
 struct RootState: Equatable {
     
     private static let defaultValue: Int = 5
-    static let getAnimalsCancellableId = 1
-    static let getAnimalsDebounceId = 1
+    fileprivate static let getAnimalsCancellableId = 1
+    fileprivate static let getAnimalsDebounceId = 1
     
     @BindableState var sliderValue: Double = Double(Self.defaultValue)
     @BindableState var stepperValue: Int = Self.defaultValue
     @BindableState var text = ""
     
     var animals: [Animal] = []
+    var screenshotsCount: Int
 }
 
 //MARK: - RootAction
@@ -77,7 +78,7 @@ extension RootState {
             return .none
             
         case .resetButtonTapped:
-            state = .init()
+            state = .init(screenshotsCount: state.screenshotsCount)
             return Effect(value: .getAnimals)
             
         case .getAnimals:
@@ -109,6 +110,6 @@ extension RootState {
         }
     }
     .binding()
-    .debug()
+    //.debug()
     
 }

@@ -9,25 +9,27 @@ import Foundation
 import ComposableArchitecture
 
 //MARK: - ApplicationState
-struct ApplicationState {
-    var rootState = RootState()
+struct ApplicationState: Equatable {
+    
+    private static let screenshotsCountDefaultValue: Int = 0
+    
+    var screenshotsCount = Self.screenshotsCountDefaultValue
+    // sub-states
+    var rootState = RootState(screenshotsCount: Self.screenshotsCountDefaultValue)
 }
 
 //MARK: - ApplicationAction
 enum ApplicationAction {
     case rootAction(RootAction)
+    case onAppear
+    case userDidTakeScreenshotNotification
 }
 
 //MARK: - ApplicationEnvironment
 struct ApplicationEnvironment {
-    var mainQueue: AnySchedulerOf<DispatchQueue>
-    var notificationCenter: NotificationCenter
-
-    static let main = Self(
-        mainQueue: .main,
-        notificationCenter: .default
-    )
-    
+    let mainQueue: AnySchedulerOf<DispatchQueue>
+    let notificationCenter: NotificationCenter
+    let userDidTakeScreenshotNotification: NSNotification.Name
 }
 
 //MARK: - ApplicationState reducer
@@ -48,7 +50,19 @@ extension ApplicationState {
             ),
         .init { state, action, environment in
             switch action {
+            
             case .rootAction:
+                return .none
+                
+            case .onAppear:
+                return environment.notificationCenter
+                    .publisher(for: environment.userDidTakeScreenshotNotification)
+                    .eraseToEffect { _ in ApplicationAction.userDidTakeScreenshotNotification }
+                    // should be assigned cancellable id, but not needed at app level
+            
+            case .userDidTakeScreenshotNotification:
+                state.screenshotsCount += 1
+                print("screenshotsCount value: \(state.screenshotsCount)")
                 return .none
             }
         }

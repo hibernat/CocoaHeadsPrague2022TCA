@@ -11,21 +11,30 @@ import ComposableArchitecture
 @main
 struct TCADemoApp: App {
     
-    var applicationStore: Store<ApplicationState, ApplicationAction> = .init(
+    let applicationStore: Store<ApplicationState, ApplicationAction> = .init(
         initialState: .init(),
         reducer: ApplicationState.reducer,
-        environment: .main
+        environment: .init(
+            mainQueue: .main,
+            notificationCenter: .default,
+            userDidTakeScreenshotNotification: UIApplication.userDidTakeScreenshotNotification
+        )
     )
     
     var body: some Scene {
         WindowGroup {
-            RootView(
-                store: applicationStore
-                    .scope(
-                        state: \.rootState,
-                        action: ApplicationAction.rootAction
-                    )
-            )
+            WithViewStore(applicationStore) { viewStore in
+                RootView(
+                    store: applicationStore
+                        .scope(
+                            state: \.rootState,
+                            action: ApplicationAction.rootAction
+                        )
+                )
+                .onAppear {
+                    viewStore.send(.onAppear)
+                }
+            }
         }
     }
 }

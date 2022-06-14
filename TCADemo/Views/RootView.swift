@@ -16,6 +16,7 @@ struct RootView: View {
         WithViewStore(store) { viewStore in
             Form {
                 Section(header: Text("CocoaHeads Prague June 2022")) {
+                    Text("Screenshots count: \(viewStore.screenshotsCount)")
                     TextField("Type here", text: viewStore.binding(\.$text))
                     Stepper(value: viewStore.binding(\.$stepperValue), in: 1...10) {
                         Text("Stepper value: \(viewStore.stepperValue)")
@@ -51,7 +52,7 @@ struct RootView_Previews: PreviewProvider {
     static var previews: some View {
         RootView(
             store: .init(
-                initialState: .init(),
+                initialState: .init(screenshotsCount: 0),
                 reducer: RootState.reducer,
                 environment: .preview
             )
