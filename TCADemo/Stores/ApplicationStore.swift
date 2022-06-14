@@ -15,7 +15,18 @@ struct ApplicationState: Equatable {
     
     var screenshotsCount = Self.screenshotsCountDefaultValue
     // sub-states
-    var rootState = RootState(screenshotsCount: Self.screenshotsCountDefaultValue)
+    var _rootState = RootState(screenshotsCount: Self.screenshotsCountDefaultValue)
+    var rootState: RootState {
+        get {
+            var state = _rootState
+            state.screenshotsCount = screenshotsCount
+            return state
+        }
+        set {
+            _rootState = newValue
+            screenshotsCount = newValue.screenshotsCount
+        }
+    }
 }
 
 //MARK: - ApplicationAction
