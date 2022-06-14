@@ -15,6 +15,7 @@ struct DetailView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             Form {
+                Text("Max sliders value: \(Int(viewStore.maxSlidersValue))")
                 VStack(alignment: .leading) {
                     Text("Slider value: \(Int(viewStore.sliderValue))")
                     HStack {
@@ -33,7 +34,7 @@ struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
         DetailView(
             store: .init(
-                initialState: .init(sliderValue: 50),
+                initialState: .init(sliderValue: 50, maxSlidersValue: 61),
                 reducer: DetailState.reducer,
                 environment: .init()
             )

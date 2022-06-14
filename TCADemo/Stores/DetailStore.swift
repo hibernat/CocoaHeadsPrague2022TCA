@@ -10,9 +10,8 @@ import ComposableArchitecture
 
 //MARK: - DetailState
 struct DetailState: Equatable {
-    
     @BindableState var sliderValue: Double
-    
+    var maxSlidersValue: Double
 }
 
 //MARK: - DetailAction

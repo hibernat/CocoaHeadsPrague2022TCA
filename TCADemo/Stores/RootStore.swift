@@ -27,7 +27,11 @@ struct RootState: Equatable {
     // sub-states
     var _detailState: DetailState? = nil
     var detailState: DetailState? {
-        get { _detailState }
+        get {
+            var state = _detailState
+            state?.maxSlidersValue = maxSlidersValue
+            return state
+        }
         set {
             _detailState = newValue
             guard let newValue = newValue else { return }
@@ -140,7 +144,7 @@ extension RootState {
             
         case .setDetail(let isPresented):
             if isPresented {
-                state.detailState = .init(sliderValue: state.maxSlidersValue)
+                state.detailState = .init(sliderValue: state.maxSlidersValue, maxSlidersValue: state.maxSlidersValue)
             } else {
                 state.detailState = nil
             }
