@@ -47,6 +47,22 @@ extension RootState {
         
         switch action {
             
+        case .binding(\.$stepperValue):
+            state.sliderValue = Double(state.stepperValue)
+            return .none
+        
+        case .binding(\.$sliderValue):
+            state.stepperValue = Int(state.sliderValue)
+            return .none
+        
+        case .binding(\.$text):
+            guard let value = Int(state.text),
+                  value > 0, value <= 10
+            else { return .none }
+            state.sliderValue = Double(value)
+            state.stepperValue = value
+            return .none
+
         case .binding:
             return .none
             
