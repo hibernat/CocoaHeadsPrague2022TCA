@@ -6,17 +6,25 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 @main
 struct TCADemoApp: App {
+    
+    var applicationStore: Store<ApplicationState, ApplicationAction> = .init(
+        initialState: .init(),
+        reducer: ApplicationState.reducer,
+        environment: .main
+    )
+    
     var body: some Scene {
         WindowGroup {
             RootView(
-                store: .init(
-                    initialState: .init(),
-                    reducer: RootState.reducer,
-                    environment: .live
-                )
+                store: applicationStore
+                    .scope(
+                        state: \.rootState,
+                        action: ApplicationAction.rootAction
+                    )
             )
         }
     }

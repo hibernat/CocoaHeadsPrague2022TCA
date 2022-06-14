@@ -13,6 +13,7 @@
 		A030ECA028567F62002F3B78 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A030EC9F28567F62002F3B78 /* Preview Assets.xcassets */; };
 		A030ECA828567FAC002F3B78 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A030ECA728567FAC002F3B78 /* ComposableArchitecture */; };
 		A030ECAB28568085002F3B78 /* RootStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A030ECAA28568085002F3B78 /* RootStore.swift */; };
+		A030ECAD28568902002F3B78 /* ApplicationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A030ECAC28568902002F3B78 /* ApplicationStore.swift */; };
 		A030ECAF28573EAE002F3B78 /* AnimalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A030ECAE28573EAE002F3B78 /* AnimalService.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,7 @@
 		A030EC9C28567F62002F3B78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A030EC9F28567F62002F3B78 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A030ECAA28568085002F3B78 /* RootStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootStore.swift; sourceTree = "<group>"; };
+		A030ECAC28568902002F3B78 /* ApplicationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationStore.swift; sourceTree = "<group>"; };
 		A030ECAE28573EAE002F3B78 /* AnimalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,6 +80,7 @@
 		A030ECA928567FF5002F3B78 /* Stores */ = {
 			isa = PBXGroup;
 			children = (
+				A030ECAC28568902002F3B78 /* ApplicationStore.swift */,
 				A030ECAA28568085002F3B78 /* RootStore.swift */,
 			);
 			path = Stores;
@@ -179,6 +182,7 @@
 				A030ECAB28568085002F3B78 /* RootStore.swift in Sources */,
 				A030ECAF28573EAE002F3B78 /* AnimalService.swift in Sources */,
 				A030EC9928567F60002F3B78 /* TCADemoApp.swift in Sources */,
+				A030ECAD28568902002F3B78 /* ApplicationStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
