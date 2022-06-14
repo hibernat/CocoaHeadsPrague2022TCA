@@ -40,11 +40,9 @@ struct RootView: View {
                     }
                 }
             }
-            // this is new
             .onAppear {
                 viewStore.send(.getAnimals)
             }
-            // new ends here
         }
     }
 }

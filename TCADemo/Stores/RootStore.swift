@@ -12,6 +12,7 @@ import ComposableArchitecture
 struct RootState: Equatable {
     
     private static let defaultValue: Int = 5
+    static let getAnimalsCancellableId = 1
     
     @BindableState var sliderValue: Double = Double(Self.defaultValue)
     @BindableState var stepperValue: Int = Self.defaultValue
@@ -84,6 +85,7 @@ extension RootState {
                 .map { RootAction.getAnimalsResponse($0) }
                 .receive(on: environment.mainQueue)
                 .eraseToEffect()
+                .cancellable(id: RootState.getAnimalsCancellableId, cancelInFlight: true)
             
         case .getAnimalsResponse(let result):
             switch result {
