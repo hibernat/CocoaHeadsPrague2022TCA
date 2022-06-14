@@ -13,6 +13,7 @@ struct RootState: Equatable {
     
     private static let defaultValue: Int = 5
     static let getAnimalsCancellableId = 1
+    static let getAnimalsDebounceId = 1
     
     @BindableState var sliderValue: Double = Double(Self.defaultValue)
     @BindableState var stepperValue: Int = Self.defaultValue
@@ -26,6 +27,7 @@ enum RootAction: BindableAction {
     case binding(BindingAction<RootState>)
     case resetButtonTapped
     case getAnimals
+    case getAnimalsDebounced
     case getAnimalsResponse(Result<[Animal], AnimalServiceError>)
 }
 
@@ -61,7 +63,7 @@ extension RootState {
         
         case .binding(\.$sliderValue):
             state.stepperValue = Int(state.sliderValue)
-            return Effect(value: .getAnimals)
+            return Effect(value: .getAnimalsDebounced)
         
         case .binding(\.$text):
             guard let value = Int(state.text),
@@ -86,6 +88,14 @@ extension RootState {
                 .receive(on: environment.mainQueue)
                 .eraseToEffect()
                 .cancellable(id: RootState.getAnimalsCancellableId, cancelInFlight: true)
+            
+        case .getAnimalsDebounced:
+            return Effect(value: .getAnimals)
+                .debounce(
+                    id: Self.getAnimalsDebounceId,
+                    for: .seconds(2),
+                    scheduler: environment.mainQueue
+                )
             
         case .getAnimalsResponse(let result):
             switch result {
