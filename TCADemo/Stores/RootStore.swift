@@ -1,5 +1,5 @@
 //
-//  ApplicationStore.swift
+//  RootStore.swift
 //  TCADemo
 //
 //  Created by Michael Bernat on 12.06.2022.
@@ -21,15 +21,30 @@ struct RootState: Equatable {
     
     var animals: [Animal] = []
     var screenshotsCount: Int
+    var maxSlidersValue: Double = Double(Self.defaultValue)
+    var isDetailPresented: Bool { detailState != nil }
+    
+    // sub-states
+    var _detailState: DetailState? = nil
+    var detailState: DetailState? {
+        get { _detailState }
+        set {
+            _detailState = newValue
+            guard let newValue = newValue else { return }
+            maxSlidersValue = max(maxSlidersValue, newValue.sliderValue)
+        }
+    }
 }
 
 //MARK: - RootAction
 enum RootAction: BindableAction {
+    case detailAction(DetailAction)
     case binding(BindingAction<RootState>)
     case resetButtonTapped
     case getAnimals
     case getAnimalsDebounced
     case getAnimalsResponse(Result<[Animal], AnimalServiceError>)
+    case setDetail(isPresented: Bool)
 }
 
 //MARK: - RootEnvironment
@@ -54,16 +69,31 @@ struct RootEnvironment {
 //MARK: - RootState reducer
 extension RootState {
     
-    static let reducer: Reducer<RootState, RootAction, RootEnvironment> = .init { state, action, environment in
+    static let reducer: Reducer<RootState, RootAction, RootEnvironment> = .combine(
+        
+        DetailState.reducer
+            .optional()
+            .pullback(
+                state: \.detailState,
+                action: /RootAction.detailAction,
+                environment: { rootEnvironment in DetailEnvironment() }
+            ),
+        
+        .init { state, action, environment in
         
         switch action {
             
+        case .detailAction:
+            return .none
+            
         case .binding(\.$stepperValue):
             state.sliderValue = Double(state.stepperValue)
+            state.maxSlidersValue = max(state.maxSlidersValue, state.sliderValue)
             return Effect(value: .getAnimals)
         
         case .binding(\.$sliderValue):
             state.stepperValue = Int(state.sliderValue)
+            state.maxSlidersValue = max(state.maxSlidersValue, state.sliderValue)
             return Effect(value: .getAnimalsDebounced)
         
         case .binding(\.$text):
@@ -71,6 +101,7 @@ extension RootState {
                   value > 0, value <= 10
             else { return .none }
             state.sliderValue = Double(value)
+            state.maxSlidersValue = max(state.maxSlidersValue, state.sliderValue)
             state.stepperValue = value
             return Effect(value: .getAnimals)
 
@@ -106,10 +137,19 @@ extension RootState {
                 state.animals = animals
             }
             return .none
-
+            
+        case .setDetail(let isPresented):
+            if isPresented {
+                state.detailState = .init(sliderValue: state.maxSlidersValue)
+            } else {
+                state.detailState = nil
+            }
+            return .none
+            
         }
     }
     .binding()
     //.debug()
+    )
     
 }
