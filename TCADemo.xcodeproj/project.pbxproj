@@ -15,6 +15,8 @@
 		A030ECAB28568085002F3B78 /* RootStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A030ECAA28568085002F3B78 /* RootStore.swift */; };
 		A030ECAD28568902002F3B78 /* ApplicationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A030ECAC28568902002F3B78 /* ApplicationStore.swift */; };
 		A030ECAF28573EAE002F3B78 /* AnimalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A030ECAE28573EAE002F3B78 /* AnimalService.swift */; };
+		A030ECB32858F592002F3B78 /* DetailStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A030ECB22858F592002F3B78 /* DetailStore.swift */; };
+		A030ECB52858F5A0002F3B78 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A030ECB42858F5A0002F3B78 /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		A030ECAA28568085002F3B78 /* RootStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootStore.swift; sourceTree = "<group>"; };
 		A030ECAC28568902002F3B78 /* ApplicationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationStore.swift; sourceTree = "<group>"; };
 		A030ECAE28573EAE002F3B78 /* AnimalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalService.swift; sourceTree = "<group>"; };
+		A030ECB22858F592002F3B78 /* DetailStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStore.swift; sourceTree = "<group>"; };
+		A030ECB42858F5A0002F3B78 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +86,7 @@
 			children = (
 				A030ECAC28568902002F3B78 /* ApplicationStore.swift */,
 				A030ECAA28568085002F3B78 /* RootStore.swift */,
+				A030ECB22858F592002F3B78 /* DetailStore.swift */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -98,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				A030EC9A28567F60002F3B78 /* RootView.swift */,
+				A030ECB42858F5A0002F3B78 /* DetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -178,8 +184,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A030ECB32858F592002F3B78 /* DetailStore.swift in Sources */,
 				A030EC9B28567F60002F3B78 /* RootView.swift in Sources */,
 				A030ECAB28568085002F3B78 /* RootStore.swift in Sources */,
+				A030ECB52858F5A0002F3B78 /* DetailView.swift in Sources */,
 				A030ECAF28573EAE002F3B78 /* AnimalService.swift in Sources */,
 				A030EC9928567F60002F3B78 /* TCADemoApp.swift in Sources */,
 				A030ECAD28568902002F3B78 /* ApplicationStore.swift in Sources */,
